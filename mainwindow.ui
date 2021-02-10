@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1036</width>
+    <height>602</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Lizard Modeling - Alexandre RC Ramos - CRAB - MDCC UFC</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QFrame" name="frame">
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="label_42">
+         <property name="text">
+          <string>Eye</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="Eye_x_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="value">
+          <double>10.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="Eye_y_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="value">
+          <double>10.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="Eye_z_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="value">
+          <double>10.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_44">
+         <property name="text">
+          <string>Look_At</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="La_x_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="La_y_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>99999.990000000005239</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="La_z_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="singleStep">
+          <double>1.000000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_40">
+         <property name="text">
+          <string>A View Up</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="Av_x_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="Av_y_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="value">
+          <double>1.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="Av_z_2">
+         <property name="minimum">
+          <double>-9990.000000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>9999.989999999999782</double>
+         </property>
+         <property name="value">
+          <double>0.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonSceneOptions">
+         <property name="text">
+          <string>Scene Options</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Ray Casting</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Quit</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="GLWidget" name="GLwidget" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1036</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAdd">
+    <property name="title">
+     <string>Add Primitive</string>
+    </property>
+    <addaction name="action_addBox"/>
+    <addaction name="action_addCone"/>
+    <addaction name="action_addCube"/>
+    <addaction name="action_addCylinder"/>
+    <addaction name="action_addSphere"/>
+   </widget>
+   <widget class="QMenu" name="menuTransform">
+    <property name="title">
+     <string>Obj Options</string>
+    </property>
+    <addaction name="action_removeObj"/>
+    <addaction name="action_transformObj"/>
+   </widget>
+   <widget class="QMenu" name="menuOctree">
+    <property name="title">
+     <string>Octree</string>
+    </property>
+    <addaction name="action_generateOctree"/>
+    <addaction name="action_OctreeViewOptions"/>
+   </widget>
+   <widget class="QMenu" name="menuMesh">
+    <property name="title">
+     <string>Mesh</string>
+    </property>
+    <addaction name="action_importMesh"/>
+   </widget>
+   <addaction name="menuAdd"/>
+   <addaction name="menuOctree"/>
+   <addaction name="menuMesh"/>
+   <addaction name="menuTransform"/>
+  </widget>
+  <action name="action_Cube">
+   <property name="text">
+    <string>Cubo</string>
+   </property>
+  </action>
+  <action name="action_Cube_2">
+   <property name="text">
+    <string>Esfera</string>
+   </property>
+  </action>
+  <action name="actionCilindro">
+   <property name="text">
+    <string>Cilindro</string>
+   </property>
+  </action>
+  <action name="actionCone">
+   <property name="text">
+    <string>Cone</string>
+   </property>
+  </action>
+  <action name="action_addCube">
+   <property name="text">
+    <string>Cube</string>
+   </property>
+  </action>
+  <action name="action_removeObj">
+   <property name="text">
+    <string>Remove</string>
+   </property>
+  </action>
+  <action name="actionSet_Values">
+   <property name="text">
+    <string>Set Values</string>
+   </property>
+  </action>
+  <action name="action_transformObj">
+   <property name="text">
+    <string>Transform</string>
+   </property>
+  </action>
+  <action name="action_addSphere">
+   <property name="text">
+    <string>Sphere</string>
+   </property>
+  </action>
+  <action name="action_addCone">
+   <property name="text">
+    <string>Cone</string>
+   </property>
+  </action>
+  <action name="action_addCylinder">
+   <property name="text">
+    <string>Cylinder</string>
+   </property>
+  </action>
+  <action name="action_addBox">
+   <property name="text">
+    <string>Box</string>
+   </property>
+  </action>
+  <action name="action_generateOctree">
+   <property name="text">
+    <string>Create</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="text">
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+  <action name="action_OctreeViewOptions">
+   <property name="text">
+    <string>View Options</string>
+   </property>
+  </action>
+  <action name="action_importMesh">
+   <property name="text">
+    <string>Import Mesh</string>
+   </property>
+  </action>
+  <action name="actionComing_Soon">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+  <action name="actionComing_Soon_2">
+   <property name="text">
+    <string>Coming Soon</string>
+   </property>
+  </action>
+  <action name="actionView_Options">
+   <property name="text">
+    <string>View Options</string>
+   </property>
+  </action>
+  <action name="actionClean_Scene">
+   <property name="text">
+    <string>Clean Scene</string>
+   </property>
+  </action>
+  <action name="actionScene_Info">
+   <property name="text">
+    <string>Scene Info</string>
+   </property>
+  </action>
+  <action name="action_exportMesh">
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+  <action name="actionInformations">
+   <property name="text">
+    <string>Informations</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>GLWidget</class>
+   <extends>QWidget</extends>
+   <header>glwidget.h</header>
+   <container>1</container>
+   <slots>
+    <slot>do_save()</slot>
+    <slot>do_load()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>released()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>67</x>
+     <y>111</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>49</x>
+     <y>327</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
