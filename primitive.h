@@ -1,16 +1,24 @@
 #ifndef PRIMITIVE_H
 #define PRIMITIVE_H
-#include "transformations.h"
 #include <QString>
 #include "colorrgb.h"
 #include "point.h"
 #include<vector>
-#include "cube.h"
 #include "vec2.h"
+#include "material.h"
+
+class Intersection;
+class Cube;
+#include "intersection.h"
+#include "transformations.h"
+#include "cube.h"
+
+
 class Primitive
 {
 public:
     Primitive();
+
 
 //    Primitive(QString name, float size);
 
@@ -26,10 +34,14 @@ public:
     QString name = "";
     ColorRGB *color = new ColorRGB(0.5,0.5,0.5);
 
+    Material *material = new Material();
+
+
     void Scale(float fX, float fY, float fZ);
     void Translate(float fX, float fY, float fZ);
     void Rotate(int axis, float angle);
     void setToWordMatrix(float M[4][4]);
+    void setWlMatrix(float M[4][4]);
     void getToWordMatrix(float *temp_vector);
 
 
@@ -51,6 +63,19 @@ public:
     bool IsInnerPoint(Point *P);
 
 
+    bool Ray_intersept(Point Po, Point D, float &t0, float &t1);
+
+
+    bool Ray_intersept(Point Po, Point D, Intersection *t0, Intersection *t1);
+
+
+    std::vector<Intersection*> InfityCylinder(Point ro, Point rd);
+    std::vector<Intersection*> Ray_intersept(Point Po, Point D);
+
+
+    bool Ray_intersept2(Point Po, Point D, int &tmin0, int &tmin1, int &tmax0, int &tmax1);
+
+
     Cube* getWrap();
 
 //    int CubeClassify(Cube *Cube); //0 - in; 1 - on; 2 - out;
@@ -61,6 +86,13 @@ public:
     int slices=0, stacks=0;
 
     float toWordMatrix[4][4] = {
+        {1,0,0,0},
+        {0,1,0,0},
+        {0,0,1,0},
+        {0,0,0,1}
+    };
+
+    float Wl[4][4] = {
         {1,0,0,0},
         {0,1,0,0},
         {0,0,1,0},

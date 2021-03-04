@@ -43,6 +43,13 @@ void Octrees::on_generateButton_clicked()
 
             this->close();
         }else{
+            CSGnode *csg = this->scene_ref->getCSG(this->ui->id_input->text());
+            if(csg){
+                Octree *octree = new Octree(this->ui->octree_name->text(), csg, this->MaxLvl);
+                octree->setMatrx(csg->toWordMatrix);
+                this->scene_ref->addOctree(octree);
+            }
+
             this->ui->error->setText(QString("Obj not found.\nPlease, try again."));
         }
 

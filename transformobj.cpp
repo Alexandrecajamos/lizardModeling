@@ -55,7 +55,7 @@ void TransformObj::on_rotate_clicked()
             error = "Objeto não encontrado;\nTente outro id.";
 
     QString id_input = this->ui->id_input->text();
-    if(this->scene_ref->RotateObj(id_input, this->rAng, this->rEixo))
+    if(this->scene_ref->RotateObj(id_input, this->rEixo,this->rAng))
         this->ui->result_label->setText(ok);
     else
        this->ui->result_label->setText(error);

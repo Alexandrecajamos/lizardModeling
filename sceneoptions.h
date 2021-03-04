@@ -29,6 +29,10 @@ private slots:
 
     void on_informations_clicked();
 
+
+
+    void on_informations_2_clicked();
+
 private:
     Ui::SceneOptions *ui;
 };

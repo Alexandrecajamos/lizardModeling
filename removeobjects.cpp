@@ -19,7 +19,7 @@ void removeObjects::on_pushButton_clicked()
 
     QString id_input = this->ui->id_input->text();
 
-    if(this->scene_ref->removePrimitive(id_input)||this->scene_ref->removeOctree(id_input)||this->scene_ref->removeMesh(id_input)){
+    if(this->scene_ref->removePrimitive(id_input)||this->scene_ref->removeOctree(id_input)||this->scene_ref->removeMesh(id_input) || this->scene_ref->removeCSG(id_input)){
         this->ui->result_label->setText(find);
     }else{
 

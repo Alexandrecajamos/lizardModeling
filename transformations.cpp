@@ -129,8 +129,19 @@ Point mxv(float M[TAM-1][TAM-1], Point *P){
             for(int j=0;j<TAM-1;j++)
             vPt[i]+=M[i][j]*vP[j];
         }
-        Point px(vPt[0],vPt[1],vPt[2]);
-        return px;
+        return Point(vPt[0],vPt[1],vPt[2]);
+
+}
+
+Point Mxv(float M[TAM][TAM], float vP[TAM]){
+
+    float vPt[TAM]={0,0,0,0};
+
+    for(int i=0;i<TAM-1;i++){
+        for(int j=0;j<TAM;j++)
+            vPt[i]+=M[i][j]*vP[j];
+    }
+    return Point(vPt[0], vPt[1], vPt[2]);
 
 }
 
@@ -177,3 +188,187 @@ float dot2(Vec2 A){
 Vec2 cross(Vec2 A, Vec2 B){
     return Vec2(A.x*B.x, A.y*B.y);
 }
+
+
+Point normal(Point a, Point b){
+    Point p1;
+    p1.x=(a.y*b.z)-(a.z*b.y);
+    p1.y=(a.z*b.x)-(a.x*b.z);
+    p1.z=(a.x*b.y)-(a.y*b.x);
+    return p1;
+}
+
+
+Intersection* min(Intersection* A, Intersection* B){
+    if(A->t < B->t)
+        return A;
+    return B;
+}
+Intersection* max(Intersection* A, Intersection* B){
+    if(A->t > B->t)
+        return A;
+    return B;
+}
+
+Point min(Point *A, Point *B){
+    float x, y,z;
+    x = min(A->x, B->x);
+    y = min(A->y, B->y);
+    z = min(A->z, B->z);
+    return Point(x,y,z);
+}
+Point max(Point *A, Point *B){
+    float x, y,z;
+    x = max(A->x, B->x);
+    y = max(A->y, B->y);
+    z = max(A->z, B->z);
+    return Point(x,y,z);
+}
+
+float length(float a, float b){
+    if(a>0 && b>0)
+        return b-a;
+    if(a<0 && b<0)
+        return ((a*-1)-(b*-1));
+    return ((a*-1)+b);
+
+}
+
+
+std::vector<Intersection*> Merge(std::vector<Intersection*> lA, std::vector<Intersection*> lB, int Op){
+
+//    std::cout << "\nChegou aqui!";
+    std::vector<Intersection*> res;
+
+    switch (Op) {
+    case 0:
+        if(lA.size()==0)
+            return lB;
+        if(lB.size()==0)
+            return lA;
+        break;
+    case 1:
+        if(lA.size()==0 || lB.size()==0)
+            return res;
+        break;
+    case 2:
+        if(lA.size()==0)
+            return res;
+        if(lB.size()==0)
+            return lA;
+        break;
+    default:
+        return res;
+        break;
+    }
+
+
+//    std::cout << "\nChegou aqui 2!";
+
+//    if(lA.size() lB.size())
+//        return res;
+//            return (lA.size()>lB.size())?lA:lB;
+
+//    //Se interseção e uma das listas for vazia, volta zero.
+//    if(Op == 1 && (lA.size()==0 || lB.size()==0))
+//        return res;
+
+//    //Se diferença e A é vazio, retorna zero.
+//    if(Op == 2 && lA.size()==0)
+//        return res;
+
+
+
+    Intersection* sentinel_temp = max(lA.back(), lB.back());
+
+    Intersection* sentinel = new Intersection(sentinel_temp->t, sentinel_temp->normal, sentinel_temp->Pintersection, sentinel_temp->p);
+
+    sentinel->t++;
+
+    lA.push_back(sentinel);
+    lB.push_back(sentinel);
+
+
+
+//    for(std::vector<Intersection*>::iterator i = lA.begin(); i != lA.end(); i++){
+//        std::cout << "\nTeste lA: " << (*i)->t;
+//    }
+
+//    for(std::vector<Intersection*>::iterator i = lB.begin(); i != lB.end(); i++){
+//        std::cout << "\nTeste lB: " << (*i)->t;
+//    }
+
+
+    int a_index = 0, b_index=0;
+
+    Intersection* scan = min(lA.front(), lB.front());
+
+//    std::cout << "\nTeste Scan: " << scan->t;
+
+
+    while(scan->operator <(sentinel)){
+
+        bool in_a = !((scan->operator <(lA[a_index])) ^ (a_index % 2));
+        bool in_b = !((scan->operator <(lB[b_index])) ^ (b_index % 2));
+
+        bool in_res;
+
+        switch (Op) {
+        case 0:
+            in_res = in_a || in_b;
+            break;
+        case 1:
+            in_res = in_a && in_b;
+            break;
+        case 2:
+            in_res = in_a && !in_b;
+            break;
+        default:
+            in_res = 0;
+            break;
+        }
+
+        if (in_res ^ (res.size() % 2))
+            res.push_back(scan);
+
+        if(scan->operator ==(lA[a_index]))
+            a_index++;
+
+        if(scan->operator ==(lB[b_index]))
+            b_index++;
+
+        scan = min(lA[a_index], lB[b_index]);
+    }
+
+
+    return res;
+}
+
+
+
+//def merge(a_tps, b_tps, op):
+//  """Merge two lists of intervals according to the boolean function op"""
+//  a_endpoints = flatten(a_tps)
+//  b_endpoints = flatten(b_tps)
+
+//  sentinel = max(a_endpoints[-1], b_endpoints[-1]) + 1
+//  a_endpoints += [sentinel]
+//  b_endpoints += [sentinel]
+
+//  a_index = 0
+//  b_index = 0
+
+//  res = []
+
+//  scan = min(a_endpoints[0], b_endpoints[0])
+//  while scan < sentinel:
+//    in_a = not ((scan < a_endpoints[a_index]) ^ (a_index % 2))
+//    in_b = not ((scan < b_endpoints[b_index]) ^ (b_index % 2))
+//    in_res = op(in_a, in_b)
+
+//    if in_res ^ (len(res) % 2): res += [scan]
+//    if scan == a_endpoints[a_index]: a_index += 1
+//    if scan == b_endpoints[b_index]: b_index += 1
+//    scan = min(a_endpoints[a_index], b_endpoints[b_index])
+
+//  return unflatten(res)

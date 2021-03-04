@@ -93,9 +93,49 @@ void MainWindow::on_pushButtonSceneOptions_clicked()
     sceneOptions->show();
 }
 
+void MainWindow::on_action_createCSG_triggered(){
+    createCSG = new CreateCSG(this);
+    createCSG->setScene(ui->GLwidget->scene);
+
+    createCSG->show();
+
+}
+
+void MainWindow::on_action_primitiveCSG_triggered(){
+    primitiveToCSG = new PrimitiveToCSG(this);
+    primitiveToCSG->setScene(ui->GLwidget->scene);
+    primitiveToCSG->show();
+
+}
+void MainWindow::on_action_viewCSG_triggered(){
+    csgOptions = new CSGOptions(this);
+    csgOptions->setScene(ui->GLwidget->scene);
+    csgOptions->show();
+}
+
+void MainWindow::on_action_loadLizard_triggered(){
+
+    this->ui->GLwidget->LoadLizard();
+}
+
+void MainWindow::on_action_loadExpB_triggered(){
+
+    this->ui->GLwidget->LoadExemploSlide();
+}
+
+void MainWindow::on_action_loadClassic_triggered(){
+
+    this->ui->GLwidget->LoadClassicCSG();
+}
+
+
+
+
 void MainWindow::on_pushButton_2_clicked()
 {
     rayCasting = new RayCasting(this);
+    free(ui->GLwidget->scene->observer);
+    ui->GLwidget->scene->observer = new Observer(Point(ui->GLwidget->Ex,ui->GLwidget->Ey,ui->GLwidget->Ez),Point(ui->GLwidget->Lox,ui->GLwidget->Loy,ui->GLwidget->Loz), Point(ui->GLwidget->Avx,ui->GLwidget->Avy,ui->GLwidget->Avz));
     rayCasting->setScene(ui->GLwidget->scene);
     rayCasting->show();
 }

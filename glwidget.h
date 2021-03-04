@@ -16,8 +16,12 @@
 #include "face.h"
 #include "mesh.h"
 
+
+#include "intersection.h"
+
 #include "QTextBrowser"
 #include <fstream>
+#include "intersection.h"
 
 using namespace std;
 
@@ -38,6 +42,15 @@ public:
     float Lox=0, Loy=0, Loz=0;
     float Avx=0, Avy=1, Avz=0;
 
+//    CSGnode *csg;
+    Point *p = new Point(0,0,0);
+
+    void LoadLizard();
+    void LoadClassicCSG();
+    void LoadExemploSlide();
+
+
+
 private:
     QTimer timer;
 
@@ -56,6 +69,7 @@ public slots:
 
     void paintOctreeNode(Octree *octree, OctreeNode *node);
     std::vector<Mesh*> ReadMeshes(std::string filepath);
+
 
 
 

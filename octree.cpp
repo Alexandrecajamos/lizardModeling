@@ -12,6 +12,9 @@ Octree::Octree(QString name, Primitive *primitive, int LevelMax){
     this->rendLvlMax=LevelMax;
 
     Cube *c = this->primitive->getWrap();
+//    c->Transform(this->primitive->toWordMatrix);
+//    c->setToWordMatrix(this->primitive->toWordMatrix);
+
     this->root = new OctreeNode(name+"_root", 0, 1,c);
     SubDivide(this->root);
 }
@@ -31,13 +34,42 @@ Octree::Octree(QString name, Mesh *mesh, int LevelMax){
 }
 
 
+Octree::Octree(QString name, CSGnode *csg, int LevelMax){
+    this->name=name;
+    this->csg=csg;
+    this->LevelMax=LevelMax;
+    this->rendLvlMax=LevelMax;
+
+    Cube *c = this->csg->getWrap();
+//    c->Transform(this->primitive->toWordMatrix);
+//    c->setToWordMatrix(this->primitive->toWordMatrix);
+    this->root = new OctreeNode(name+"_root", 0, 1,c);
+    SubDivide(this->root);
+
+}
+
+
 void Octree::SubDivide(OctreeNode *node){
-    if(node->level>=this->LevelMax || node->type==0 || node->type==2)
+    if(node->level>=this->LevelMax || node->type==2)
         return;
 
     std::vector<Cube*> newCubes = node->cube->Divide8();
+//    for(std::vector<Cube*>::iterator i = newCubes.begin(); i != newCubes.end(); i++){
+//        if(this->primitive != NULL)
+//            (*i)->Transform(this->primitive->toWordMatrix);
+//        else
+//            (*i)->Transform(this->csg->toWordMatrix);
+//    }
 
     for(int i=0; i<8; i++){
+
+//        if(this->primitive != NULL){
+//        newCubes[i]->setToWordMatrix(this->primitive->toWordMatrix);
+//        }
+//        if(this->csg != NULL){
+//            newCubes[i]->setToWordMatrix(this->csg->toWordMatrix);
+//        }
+
         int lvl = node->level+1, type = this->Classify2(newCubes[i]);
         QString node_name  =  node->name +"_" + QString::number(i);
 
@@ -52,7 +84,6 @@ void Octree::SubDivide(OctreeNode *node){
 
 
 }
-
 int Octree::Classify(Cube *c){
 
     //Type:0=Out; Type:1=On; Type:2=In;
@@ -78,18 +109,28 @@ int Octree::Classify(Cube *c){
 
     return 3;
 }
-
 int Octree::Classify2(Cube *c){
 
 
     //Type:0=Out; Type:1=On; Type:2=In;
 
-    if(this->primitive != NULL){
+    if(this->primitive != NULL || this->csg != NULL){
         int cont = 0;
         for(std::vector<Point*>::iterator i = c->vertices.begin(); i!=c->vertices.end();i++){
             Point *P = (*i);
-            c->Classified_points[cont] = this->primitive->PointClassify(P);
-            cont++;
+            if(this->primitive != NULL)
+                c->Classified_points[cont] = this->primitive->PointClassify(P);
+            else{
+//                float Wl[4][4] = {{1,0,0,0},{0,1,0,0},{0,0,1,0},{0,0,0,1}};
+
+                c->Classified_points[cont] = this->csg->PointClassify(P);
+//                if(c->Classified_points[cont] == 0){
+//                    c->Classified_points[cont] = this->VerifyByEdge(c);
+//                }
+
+            }cont++;
+
+
 
         }
 
@@ -125,6 +166,7 @@ int Octree::Classify2(Cube *c){
 
 }
 
+
 int Octree::VerifyByEdge(Cube *c){
     std::vector<Edge*>::iterator i = c->edges.begin();
     int control = 0;
@@ -135,8 +177,10 @@ int Octree::VerifyByEdge(Cube *c){
 
         Point teste(e->P0->x, e->P0->y, e->P0->z);
         teste.operator +=(p);
-
-        control = this->primitive->PointClassify(&p);
+        if(this->primitive != NULL)
+            control = this->primitive->PointClassify(&p);
+        else
+            control = this->csg->PointClassify(&p);
 
     }
     return control;
@@ -177,9 +221,6 @@ void Octree::SubDividev2(OctreeNode *node){
     }
 
 }
-
-
-
 void Octree::getToWordMatrix(float *temp_vector){
     int c=0;
     for(int i=0;i<4;i++)
@@ -188,13 +229,11 @@ void Octree::getToWordMatrix(float *temp_vector){
             c++;
         }
 }
-
 void Octree::setMatrx(float matrix[4][4]){
     for(int i=0;i<4;i++)
         for(int j=0; j<4; j++)
             this->transformMatrix[i][j]=matrix[i][j];
 }
-
 
 void Octree::Translate(float fX, float fY, float fZ){
     float translateMatrix[4][4] = { {1.0f, 0.0f, 0.0f, fX},
@@ -248,14 +287,12 @@ void Octree::Rotate(int axis, float angle){
     multiplyMatrix(tempMatrix, rotateMatrix,this->transformMatrix);
 }
 
-
 float Octree::getVolume(){
 
 //    return this->root->getVolume();
 
     return this->getVolume(this->root);
 }
-
 float Octree::getVolume(OctreeNode *node){
 
     float volume = 0;
@@ -291,9 +328,8 @@ float Octree::getVolume(OctreeNode *node){
         }
     }
 
-
+    return volume;
 }
-
 void Octree::NumberOfNodes(OctreeNode *node, int &In, int &On, int &Out, int &Leaf){
 
     if(node==NULL)

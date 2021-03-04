@@ -4,6 +4,7 @@
 #include "octreenode.h"
 #include "colorrgb.h"
 #include "mesh.h"
+#include "csgnode.h"
 
 class Octree
 {
@@ -12,6 +13,9 @@ public:
 
     Octree(QString name, Primitive *primitive, int LevelMax);
     Octree(QString name, Mesh *mesh, int LevelMax);
+
+    Octree(QString name, CSGnode *csg, int LevelMax);
+
 
     void SubDivide(OctreeNode* node);
     void SubDividev2(OctreeNode* node); // With mesh;
@@ -27,10 +31,13 @@ public:
     QString name = "";
     Primitive *primitive;
     Mesh *mesh;
+    CSGnode *csg = NULL;
     OctreeNode *root = NULL;
     int LevelMax = 0;
 
-    bool rendIn = true, rendOn = true, rendOut = true, WFIn = true, WFOn = true, WFOut = true, RenderNonLeafNodes = false, OnlyLeafatLevel = false;
+    //Duas alterações na OCtree: Não classifico como folha as células out (Método construtor); Deixo correr o método "Subdivide" mesmo sendo célula Out. Ou seja, continuo subdividindo células out= vox;
+
+    bool rendIn = true, rendOn = true, rendOut = false, WFIn = true, WFOn = true, WFOut = true, RenderNonLeafNodes = false, OnlyLeafatLevel = false;
     int rendLvlMax = 0, NonRenderRegion = -1;
     ColorRGB *In_Color = new ColorRGB(0,0,1), *On_Color = new ColorRGB(0,1,0), *Out_Color = new ColorRGB(1,0,0);
 

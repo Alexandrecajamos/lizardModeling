@@ -22,8 +22,8 @@ public:
     explicit RayCasting(QWidget *parent = 0);
     ~RayCasting();
 
-    int sizeX = 250;
-    int sizeY = 250;
+    int sizeX = 450;
+    int sizeY = 450;
     float W = 0.5;
     float H = 0.5;
     float d = 1;
@@ -44,6 +44,17 @@ private slots:
 
     void on_sizeY_valueChanged(double arg1);
 
+    void on_R_valueChanged(double arg1);
+
+    void on_G_valueChanged(double arg1);
+
+    void on_B_valueChanged(double arg1);
+
+    void on_Lx_valueChanged(double arg1);
+
+    void on_Ly_valueChanged(double arg1);
+
+    void on_Lz_valueChanged(double arg1);
 
     void on_bgG_sliderMoved(int action);
     void on_bgB_sliderMoved(int action);

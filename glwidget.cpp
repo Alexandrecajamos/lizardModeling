@@ -2,7 +2,7 @@
 #include "cube.h"
 #include "face.h"
 #include "edge.h"
-
+#include "transformations.h"
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(parent)
@@ -10,6 +10,48 @@ GLWidget::GLWidget(QWidget *parent) :
 
     connect( &timer, SIGNAL(timeout()), this, SLOT(updateGL()) );
     timer.start(16);
+
+
+    // Lizard:
+
+
+
+
+
+//    this->scene->addPrimitive("b",2,0,0,0,0,0,1,3,10,10,0,1,0); // Rabo;
+//    this->scene->RotateObj("b",0,180);
+
+
+
+
+
+
+//    this->scene->addPrimitive("a",1,0,0,0,0,2,0,0,40,40,0.8,1,0.5);
+//    this->scene->TranslateObj("a", 0,0,2);
+
+//    this->scene->addPrimitive("b",1,0,0,0,0,3,0,0,40,40,0.8,0.5,0.5);
+
+
+//    this->scene->createCSG("csg","a","b",2);
+
+
+
+
+
+//    Point p(0,0,0);
+
+//        std:: cout << "\nTeste: "<< this->scene->primitives.at(0)->PointClassify(&p) << ", " << this->scene->primitives.at(1)->PointClassify(&p);
+//        this->scene->addPrimitive("b",2,0,0,0,0,0,2,3,10,10,0,1,0);
+
+//        this->csg = new CSGnode(this->scene->primitives.at(0));
+//        CSGnode *c1 = new CSGnode(this->scene->primitives.at(0));
+//        CSGnode *c2 = new CSGnode(this->scene->primitives.at(1));
+
+//        this->csg = new CSGnode(c1,c2,3);
+
+//    for(int i=-5; i<6; i++)
+//        this->points.push_back(Point(i,1,0));
+
 }
 
 void GLWidget::initializeGL()
@@ -19,12 +61,136 @@ void GLWidget::initializeGL()
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHTING);
     glEnable(GL_COLOR_MATERIAL);
-//    this->scene->addPrimitive(QString("Cubo"), 2, 1,1,1);
+
+//    Point *n1 = new Point(0,1,1);
+
+//    Intersection *i0 = new Intersection(1.0f, n1, 0);
+//    Intersection *i1 = new Intersection(4.0f, n1, 0);
+//    Intersection *i2 = new Intersection(7.0f, n1, 0);
+//    Intersection *i3 = new Intersection(9.0f, n1, 0);
+
+//    Intersection *i4 = new Intersection(3.0f, n1, 0);
+//    Intersection *i5 = new Intersection(5.0f, n1, 0);
+//    Intersection *i6 = new Intersection(7.0f, n1, 0);
+//    Intersection *i7 = new Intersection(9.0f, n1, 0);
+
+//    std::vector<Intersection*> LA;
+//    std::vector<Intersection*> LB;
+
+//    LA.push_back(i0);
+//    LA.push_back(i1);
+//    LA.push_back(i2);
+//    LA.push_back(i3);
+
+
+
+
+//    LB.push_back(i4);
+//    LB.push_back(i5);
+
+//    LB.push_back(i6);
+//    LB.push_back(i7);
+
+// std::vector<Intersection*> list = Merge(LA, LB, 1);
+
+//    string s = "I(1,U(0,1))";
+
+//    string s = "I(U(0,D(2,3)), D(4,U(3,0)))";
+
+
+//    CSGnode *csg = this->scene->build_csg(s);
+
+//    this->scene->csg_trees.push_back(csg);
+
+//    std::cout << "\nTeste:" << csg->name.toStdString() << csg->getEquation().toStdString();
+
+
+
+
+//    Point D(-0.505671, -0.560192, -0.656111);
+//    Point Po(10,10,10);
+
+
+
+//    Point D(0, 0, -1);
+
+//    Point Po(0,0,10);
+
+//    std::vector<Intersection*> list = this->scene->primitives.at(0)->Ray_intersept(Po, D);
+
+//     std::vector<Intersection*> list = this->scene->csg_trees.at(0)->Ray_intersept(Po, D);
+
+//     std::cout << "\nTeste Resultado:";
+
+//       for(std::vector<Intersection*>::iterator i = list.begin(); i != list.end(); i++){
+//           std::cout << "\nTeste result: " << (*i)->t;
+//       }
+
+//    float t0 = -1, t1=-1;
+//    this->scene->primitives.at(0)->Ray_intersept(Po, D, t0, t1);
+
+
+
+//    std::cout << "\nTeste1: " << t0 << ", " << t1;
+
+//    std::cout << "\nTeste: " << T0->t;
+
+//   std::vector<Intersection*> list = Merge(LA, LB, 1);
+
+//   for(std::vector<Intersection*>::iterator i = list.begin(); i != list.end(); i++){
+//       std::cout << "\nTeste result: " << (*i)->t;
+//   }
+
+//    GLfloat luzAmbiente[4]={0.1,0.1,0.1,1.0};
+//    GLfloat luzDifusa[4]={1,1,1,1};
+//    GLfloat luzEspecular[4]={0, 0, 0, 0.0};
+//    GLfloat posicaoLuz[4]={-10.0, 50.0, -10.0, 0};
+//    GLfloat especularidade[4]={0,0,0,1.0};
+//    GLint especMaterial = 100;
+
+//    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+//    // Habilita o modelo de colorização de Gouraud
+//    glShadeModel(GL_SMOOTH);
+//    // Define a refletância do material
+//    glMaterialfv(GL_FRONT,GL_SPECULAR, especularidade);
+//    // Define a concentração do brilho
+//    glMateriali(GL_FRONT,GL_SHININESS,especMaterial);
+//    // Ativa o uso da luz ambiente
+//    glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
+
+//    // Define os parâmetros da luz de número 0
+//    glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
+//    glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa );
+//    glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular );
+//    glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz );
+
+//    // Habilita a definição da cor do material a partir da cor corrente
+//    //glEnable(GL_COLOR_MATERIAL);
+//    //Habilita o uso de iluminação
+//     glEnable(GL_LIGHTING);
+
+//     glEnable(GL_LIGHT0);
+
+//    // Habilita o depth-buffering  Opacidade dos objetos
+//     glEnable(GL_DEPTH_TEST);
+
+
+
+//    this->scene->addPrimitive(QString("Shpe"), 2, 1,1,1);
 
 //    vector<Mesh*> Objs = this->ReadMeshes(this->Lizard_path);
 
 //    for(vector<Mesh*>::iterator i = Objs.begin(); i!=Objs.end(); i++)
 //        this->scene->addMesh(*i);
+
+
+
+
+
+//    std::cout<< "\nTeste: " << c1->PointIntersect(&points.at(0));
+
+//    this->scene->addPrimitive("Cube", 1, 0,0,0,0,2,0,0,10,10,1,0,0);
+
 
 
 }
@@ -35,6 +201,35 @@ void GLWidget::paintGL()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     gluLookAt(Ex,Ey,Ez,Lox,Loy,Loz,Avx,Avy,Avz);
+
+
+//    glLoadIdentity();
+//    gluLookAt(Ex,Ey,Ez,Lox,Loy,Loz,Avx,Avy,Avz);
+
+//    if(this->scene->csg_trees.size()>0){
+//            int bbox = 10;
+
+//            glBegin(GL_LINE_STRIP);
+//            for(int k=-bbox; k<=bbox; k++){
+//                for(int j=-bbox; j<=bbox;j++){
+//                    for(int i=-bbox; i<=bbox; i++){
+//                        glLoadIdentity();
+//                        gluLookAt(Ex,Ey,Ez,Lox,Loy,Loz,Avx,Avy,Avz);
+//                        glColor3f(1.0f, 1.0f, 1.0f);
+//                        p->x=i;
+//                        p->y=j;
+//                        p->z=k;
+//                        if(this->scene->csg_trees.at(0)->PointIntersect(this->p)){
+//                            glTranslated(i,j,k);
+//                            glutSolidCube(1);
+//                        }
+//                    }
+
+//                }
+//            }
+
+//            glEnd();
+//    }
 
 
 //    Point *p0 = new Point(1,1,6);
@@ -350,9 +545,31 @@ void GLWidget::paintOctreeNode(Octree *octree, OctreeNode *node){
                        0,0,1,0,
                        0,0,0,1};
 
+//        float M[4][4] = {{1,0,0,0},
+//                         {0,1,0,0},
+//                         {0,0,1,0},
+//                         {0,0,0,1}};
+
+
         octree->getToWordMatrix(m);
         glMultMatrixf(m);
-        glTranslatef(c->center->x, c->center->y, c->center->z);
+
+//        multiplyMatrix(octree->transformMatrix, node->cube->toWordMatrix, M);
+//        float m[16] = {1,0,0,0,
+//                       0,1,0,0,
+//                       0,0,1,0,
+//                       0,0,0,1};
+//        for(int k=0; k<4;k++)
+//            for(int l=0;l<4;l++){
+//                m[k+l] = M[k][l];
+//            }
+
+
+//        node->cube->getToWordMatrix(m);
+//        glMultMatrixf(m);
+
+         glTranslatef(c->center->x, c->center->y, c->center->z);
+
 
         ColorRGB *color;
 
@@ -515,29 +732,169 @@ vector<Mesh*> GLWidget::ReadMeshes (std::string filepath){
 
 void GLWidget::Eye_X(double x){
     Ex=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Eye_Y(double x){
     Ey=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Eye_Z(double x){
     Ez=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Lo_X(double x){
     Lox=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Lo_Y(double x){
     Loy=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Lo_Z(double x){
     Loz=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Av_X(double x){
     Avx=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Av_Y(double x){
     Avy=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 void GLWidget::Av_Z(double x){
     Avz=(float)x;
+    this->scene->setObserver(this->Ex, this->Ey, this->Ez, this->Lox, this->Loy, this->Loz, this->Avx, this->Avy, this->Avz);
 }
 
+
+void GLWidget::LoadExemploSlide(){
+
+    this->scene->csg_trees.clear();
+    this->scene->primitives.clear();
+
+
+    this->scene->addPrimitive("bl1",4,0,10,1,10,0,0,0,0,0,0,1,0); // bl1;
+    this->scene->addPrimitive("bl2",4,0,10,9,1,0,0,0,0,0,0,0,1); // Bl2;
+    this->scene->TranslateObj("bl1", 5,0.5,5);
+    this->scene->TranslateObj("bl2", 5,5.5,0.5);
+
+    this->scene->createCSG("un", "bl1", "bl2", 0);
+
+
+    this->scene->addPrimitive("C",3,0,0,0,0,0,1,1,10,10,1,0,0); // Corpo - Cilindro;
+    this->scene->addPrimitive("c",4,0,2,2,2,0,0,0,0,0,1,0,0); // Corpo - Box;
+
+    this->scene->createCSG("Cy", "c", "C", 1);
+
+    this->scene->TranslateObj("Cy", 5,0,5);
+    this->scene->RotateObj("Cy",0, -90);
+
+
+    this->scene->createCSG("csg","un", "Cy", 2);
+
+}
+
+void GLWidget::LoadClassicCSG(){
+
+    this->scene->csg_trees.clear();
+    this->scene->primitives.clear();
+
+
+    this->scene->addPrimitive("A",0,3,0,0,0,0,0,0,0,0,1,0,0);
+    this->scene->addPrimitive("B",1,0,0,0,0,2,0,0,10,10,0,0,1);
+
+    this->scene->createCSG("AB", "A", "B", 1);
+
+
+    this->scene->addPrimitive("C",3,0,0,0,0,0,1,1,10,10,0,1,0);
+    this->scene->addPrimitive("c",4,0,2,2,3,0,0,0,0,0,0,1,0);
+
+    this->scene->createCSG("C0", "c", "C", 1);
+    this->scene->createCSG("C1", "c", "C", 1);
+    this->scene->createCSG("C2", "c", "C", 1);
+
+    this->scene->RotateObj("C1",0, -90);
+    this->scene->RotateObj("C2",1, 90);
+
+    this->scene->createCSG("aux", "C0", "C1", 0);
+
+    this->scene->createCSG("Cs", "aux", "C2", 0);
+    this->scene->removeCSG("aux");
+
+    this->scene->createCSG("csg","AB", "Cs", 2);
+
+}
+
+
+
+void GLWidget::LoadLizard(){
+
+    this->scene->csg_trees.clear();
+    this->scene->primitives.clear();
+
+        this->scene->addPrimitive("a",3,0,0,0,0,0,1,1,10,10,0,1,0); // Corpo - Cilindro;
+        this->scene->addPrimitive("b",4,0,2,1,5,0,0,0,0,0,0,1,0); // Corpo - Box;
+
+        this->scene->createCSG("corpo","a","b",1);
+
+        this->scene->addPrimitive("c",1,0,0,0,0,1.5,0,0,10,10,0.5,1,0.5);
+        this->scene->TranslateObj("c", 0,0,2.5);
+        this->scene->ScaleObj("c", 0.75,0.75,1);
+
+        this->scene->createCSG("cabeça", "2");
+
+        this->scene->addPrimitive("d",1,0,0,0,0,1.5,0,0,10,10,0.5,1,0.5);
+        this->scene->TranslateObj("d", 0,0,-2.5);
+        this->scene->ScaleObj("d", 0.6,0.5,2.5);
+
+        this->scene->createCSG("rabo", "3");
+
+        this->scene->addPrimitive("e",4,0,0.5,2,0.5,0,0,0,0,0,0,1,0.5);
+        this->scene->TranslateObj("e", 0.5,-1,-1.75);
+
+        this->scene->addPrimitive("f",4,0,0.5,2,0.5,0,0,0,0,0,0,1,0.5);
+        this->scene->TranslateObj("f",-0.5,-1,-1.75);
+
+
+        this->scene->addPrimitive("g",4,0,0.5,2,0.5,0,0,0,0,0,0,1,0.5);
+        this->scene->TranslateObj("g", 0.5,-1,1.75);
+
+        this->scene->addPrimitive("h",4,0,0.5,2,0.5,0,0,0,0,0,0,1,0.5);
+        this->scene->TranslateObj("h",-0.5,-1,1.75);
+
+
+        this->scene->createCSG("pernasTrazeiras","e","f",0);
+        this->scene->createCSG("pernasDianteiras","g","h",0);
+        this->scene->createCSG("pernas","pernasDianteiras","pernasTrazeiras",0);
+
+
+        this->scene->addPrimitive("i",1,0,0,0,0,1.5,0,0,10,10,0,1,0);
+        this->scene->TranslateObj("i", 0,0.7,0);
+        this->scene->ScaleObj("i", 0.25,0.5,0.25);
+
+        this->scene->addPrimitive("j",1,0,0,0,0,1.5,0,0,10,10,0,1,0);
+        this->scene->TranslateObj("j", 0,0.7,1.25);
+        this->scene->ScaleObj("j", 0.25,0.5,0.25);
+
+
+        this->scene->addPrimitive("k",1,0,0,0,0,1.5,0,0,10,10,0,1,0);
+        this->scene->TranslateObj("k", 0,0.7,-1.25);
+        this->scene->ScaleObj("k", 0.25,0.5,0.25);
+
+
+        this->scene->createCSG("costas", "i", "j",  0);
+        this->scene->createCSG("costas", "costas", "k",  0);
+        this->scene->removeCSG("costas");
+
+        this->scene->createCSG("Lizard", "cabeça", "corpo",  0);
+        this->scene->createCSG("Lizard","Lizard", "pernas",0);
+        this->scene->removeCSG("Lizard");
+        this->scene->createCSG("Lizard","Lizard", "costas",0);
+        this->scene->removeCSG("Lizard");
+        this->scene->createCSG("Lizard","Lizard", "rabo",0);
+        this->scene->removeCSG("Lizard");
+
+
+
+}

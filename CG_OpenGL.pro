@@ -42,7 +42,16 @@ SOURCES += main.cpp\
     addmesh.cpp \
     sceneoptions.cpp \
     raycasting.cpp \
-    camera.cpp
+    camera.cpp \
+    observer.cpp \
+    csgnode.cpp \
+    createcsg.cpp \
+    primitivetocsg.cpp \
+    material.cpp \
+    light.cpp \
+    spotlight.cpp \
+    intersection.cpp \
+    csgoptions.cpp
 
 HEADERS  += mainwindow.h \
     glwidget.h \
@@ -72,7 +81,16 @@ HEADERS  += mainwindow.h \
     addmesh.h \
     sceneoptions.h \
     raycasting.h \
-    camera.h
+    camera.h \
+    observer.h \
+    csgnode.h \
+    createcsg.h \
+    primitivetocsg.h \
+    material.h \
+    light.h \
+    spotlight.h \
+    intersection.h \
+    csgoptions.h
 
 FORMS    += mainwindow.ui \
     octrees.ui \
@@ -87,6 +105,9 @@ FORMS    += mainwindow.ui \
     addcylinder.ui \
     addmesh.ui \
     sceneoptions.ui \
-    raycasting.ui
+    raycasting.ui \
+    createcsg.ui \
+    primitivetocsg.ui \
+    csgoptions.ui
 
 LIBS += -lglut -lGLU

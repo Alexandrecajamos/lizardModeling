@@ -11,7 +11,7 @@ OctreeNode::OctreeNode(QString name, int level, int type, Cube *cube){
     this->type=type;
     this->cube=cube;
 
-    if(type==0 || type==2)
+    if(type==2)
         this->leaf=true;
 
     for(int i=0; i<8; i++)

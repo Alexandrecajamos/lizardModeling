@@ -249,8 +249,21 @@
     </property>
     <addaction name="action_importMesh"/>
    </widget>
+   <widget class="QMenu" name="menuCSG">
+    <property name="title">
+     <string>CSG</string>
+    </property>
+    <addaction name="action_createCSG"/>
+    <addaction name="action_primitiveCSG"/>
+    <addaction name="action_viewCSG"/>
+    <addaction name="separator"/>
+    <addaction name="action_loadLizard"/>
+    <addaction name="action_loadClassic"/>
+    <addaction name="action_loadExpB"/>
+   </widget>
    <addaction name="menuAdd"/>
    <addaction name="menuOctree"/>
+   <addaction name="menuCSG"/>
    <addaction name="menuMesh"/>
    <addaction name="menuTransform"/>
   </widget>
@@ -372,6 +385,36 @@
   <action name="actionInformations">
    <property name="text">
     <string>Informations</string>
+   </property>
+  </action>
+  <action name="action_createCSG">
+   <property name="text">
+    <string>Create CSG</string>
+   </property>
+  </action>
+  <action name="action_primitiveCSG">
+   <property name="text">
+    <string>Add Primitive</string>
+   </property>
+  </action>
+  <action name="action_viewCSG">
+   <property name="text">
+    <string>CSG View</string>
+   </property>
+  </action>
+  <action name="action_loadLizard">
+   <property name="text">
+    <string>Load Lizard</string>
+   </property>
+  </action>
+  <action name="action_loadClassic">
+   <property name="text">
+    <string>Load Classic</string>
+   </property>
+  </action>
+  <action name="action_loadExpB">
+   <property name="text">
+    <string>Load Exp. &quot;Bento&quot;</string>
    </property>
   </action>
  </widget>

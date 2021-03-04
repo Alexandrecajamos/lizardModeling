@@ -5,8 +5,9 @@
 
 #include <iostream>
 #include <math.h>
-#include "point.h"
 #include "vec2.h"
+#include<vector>
+#include "intersection.h"
 
 
 void getIdentity(float M[TAM][TAM]);
@@ -21,6 +22,7 @@ float detMatrix3x3(float M[3][3]);
 void InvMatrix3x3(float M[3][3], float det);
 
 Point mxv(float M[3][3], Point *P);
+Point Mxv(float M[TAM][TAM], float V[TAM]);
 
 
 Point vec(Point *P0, Point *P1);
@@ -37,6 +39,18 @@ Vec2 vec(Vec2 *A, Vec2 *B);
 float min(float A, float B);
 float max(float A, float B);
 float clamp(float x, float upper, float lower);
+
+
+Point normal(Point A, Point B);
+
+Point min(Point *A, Point *B);
+Point max(Point *A, Point *B);
+
+
+std::vector<Intersection*> Merge(std::vector<Intersection*> lA, std::vector<Intersection*> lB, int Op);
+
+float length(float a, float b);
+
 
 
 #endif // TRANSFORMATIONS_H

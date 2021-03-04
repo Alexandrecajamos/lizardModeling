@@ -49,3 +49,18 @@ void SceneOptions::on_informations_clicked()
 
 
 }
+
+
+void SceneOptions::on_informations_2_clicked()
+{
+
+    if(this->scene_ref->rendOctrees)
+        this->scene_ref->octrees.clear();
+    if(this->scene_ref->rendPrimitives)
+        this->scene_ref->primitives.clear();
+    if(this->scene_ref->rendMeshes)
+        this->scene_ref->meshes.clear();
+
+    this->scene_ref->csg_trees.clear();
+
+}

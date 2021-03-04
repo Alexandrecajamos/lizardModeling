@@ -16,6 +16,11 @@
 #include "sceneoptions.h"
 #include "raycasting.h"
 
+#include "createcsg.h"
+#include "primitivetocsg.h"
+
+#include "csgoptions.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -49,6 +54,18 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+
+    void on_action_createCSG_triggered();
+    void on_action_primitiveCSG_triggered();
+    void on_action_viewCSG_triggered();
+
+    void on_action_loadLizard_triggered();
+    void on_action_loadExpB_triggered();
+    void on_action_loadClassic_triggered();
+
+
+
+
 private:
     Ui::MainWindow *ui;
     AddCube *addCube;
@@ -65,6 +82,10 @@ private:
     SceneOptions *sceneOptions;
 
     RayCasting *rayCasting;
+    CreateCSG *createCSG;
+    PrimitiveToCSG *primitiveToCSG;
+
+    CSGOptions *csgOptions;
 
 };
 

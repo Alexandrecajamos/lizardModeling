@@ -8,11 +8,15 @@
 #include "cube.h"
 #include "octree.h"
 #include "mesh.h"
-
+#include "csgnode.h"
 
 #include <sstream>
 #include "QTextBrowser"
 #include <fstream>
+
+#include "observer.h"
+#include "light.h"
+#include "spotlight.h"
 
 using namespace std;
 
@@ -28,7 +32,17 @@ public:
     std::vector<Octree*> octrees;
     std::vector<Mesh*> meshes;
 
+    std::vector<CSGnode*> csg_trees;
+
+    std::vector<Light*> lights;
+    std::vector<SpotLight*> spotLights;
+
+
+    Observer *observer = new Observer();
+    void setObserver(float Ex,float Ey,float Ez,float Lox,float Loy,float Loz,float Avx,float Avy,float Avz);
+
     bool rendPrimitives = true, rendOctrees = true, rendMeshes = true, wireFrame = false;
+
 
 //    void addPrimitive(QString name, float size, float R, float G, float B);
 //    void addPrimitive(QString name, float radius, float slices, float stacks, float R, float G, float B);
@@ -60,13 +74,34 @@ public:
 
     Primitive* getPrimitive(QString name);
 
+
+
     string SceneInformations();
 
 
     ColorRGB Ray_Pix_Ilm(Point Po, Point D);
 
+    float Ray_intersept_primitive(Point Po, Point D, int &iPrimitive);
+
     ColorRGB* Bg = new ColorRGB(0.250980, 0.87843137, 0.815686275);
-    ColorRGB* Amb = new ColorRGB(0,0,0);
+    ColorRGB* Amb = new ColorRGB(0.1,0.1,0.1);
+
+
+
+    CSGnode* getCSG(QString name);
+    bool removeCSG(QString name);
+
+    bool createCSG(QString name, QString A, QString B, int Opr);
+    bool primitiveToCSG(QString CSG, QString P, int Opr);
+
+
+
+    bool createCSG(QString name, QString s);
+    CSGnode* build_csg(string s);
+
+    std::vector<Intersection*> Edge_intersept_CSG(QString name, float p0x,float p0y,float p0z,float p1x,float p1y,float p1z, bool infinity);
+
+
 
 //    std::vector<Cube*> cubes;
 //    std::vector<Sphere*> spheres;

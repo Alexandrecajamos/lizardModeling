@@ -21,21 +21,19 @@ void RayCasting::on_pushButton_clicked()
 
     for( int i=0; i<this->sizeX; i++)
     {
-
         float Yi= (c->h/2)-(c->DY/2)-(i*c->DY);
 
         for( int j=0; j<sizeY; j++)
         {
-//            image.setPixel(j,i, qRgb(this->Bg->R*255,this->Bg->G*255,this->Bg->B*255));
 
             float Xj = (-c->w/2)+(c->DX/2)+(j*c->DX);
             Point Pij(Xj,Yi,c->d);
             Pij.normalize();
-
             ColorRGB print = this->scene_ref->Ray_Pix_Ilm(Po, Pij);
             image.setPixel( j, i, qRgb(print.R*255, print.G*255, print.B*255));
         }
     }
+
 
     QGraphicsScene *graphic = new QGraphicsScene( this );
     graphic->addPixmap( QPixmap::fromImage( image ) );
@@ -104,5 +102,36 @@ void RayCasting::on_iaG_sliderMoved(int action)
 void RayCasting::on_iaB_sliderMoved(int action)
 {
     this->scene_ref->Amb->B=(float)action/255;
+}
+
+
+void RayCasting::on_R_valueChanged(double arg1)
+{
+    this->scene_ref->lights.at(0)->fontColor.R=arg1;
+}
+
+void RayCasting::on_G_valueChanged(double arg1)
+{
+    this->scene_ref->lights.at(0)->fontColor.G = arg1;
+}
+
+void RayCasting::on_B_valueChanged(double arg1)
+{
+    this->scene_ref->lights.at(0)->fontColor.B = arg1;
+}
+
+void RayCasting::on_Lx_valueChanged(double arg1)
+{
+    this->scene_ref->lights.at(0)->Pos->x = arg1;
+}
+
+void RayCasting::on_Ly_valueChanged(double arg1)
+{
+    this->scene_ref->lights.at(0)->Pos->y = arg1;
+}
+
+void RayCasting::on_Lz_valueChanged(double arg1)
+{
+    this->scene_ref->lights.at(0)->Pos->z = arg1;
 }
 
